@@ -1,0 +1,14 @@
+{
+    "version": "0.2.0",
+    "configurations": [
+        {
+            "name": "Build",
+            "type": "cppvsdbg",
+            "request": "launch",
+            "program": "${workspaceFolder}/odin_sagas.exe",
+            "cwd": "${workspaceFolder}",
+            "console": "integratedTerminal"
+        }
+    ],
+    "compounds": []
+}
