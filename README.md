@@ -1,2 +1,2 @@
 # odin-sagas
-A truly epic about about learning the Odin programming language
+A truly epic adventure about learning the Odin programming language
