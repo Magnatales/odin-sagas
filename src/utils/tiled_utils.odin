@@ -8,6 +8,9 @@ import x "core:encoding/xml"
 import fp "core:path/filepath"
 import rl "vendor:raylib"
 
+
+TILED_RESOURCES::"resources\\tiled\\"
+
 Image :: rl.Image
 Document :: x.Document
 Attribute :: x.Attribute
@@ -37,6 +40,10 @@ TileMap :: struct {
 load_tilemap :: proc(filepath:string) -> TileMap {
     doc, err := x.load_from_file(filepath)
     
+    if(err != nil){
+        fmt.println(err)
+    }
+
     dir := fp.dir(filepath)
     
     tilemap : TileMap
