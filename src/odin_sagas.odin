@@ -4,8 +4,19 @@ import rl "vendor:raylib"
 import "core:fmt"
 import "core:mem"
 
+import s "core:strings"
+import tiled "utils"
+
 main :: proc() 
 {
+//load TileMap data example:
+    map_path := tiled.TILED_RESOURCES + "Overworld.tmx"
+    fmt.println(map_path)
+    tilemap := tiled.load_tilemap(map_path)
+    fmt.println(tilemap)
+//=========================
+
+
     track: mem.Tracking_Allocator
     mem.tracking_allocator_init(&track, context.allocator)
     context.allocator = mem.tracking_allocator(&track)
