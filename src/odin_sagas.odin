@@ -5,18 +5,10 @@ import "core:fmt"
 import "core:mem"
 
 import s "core:strings"
-import tiled "utils"
+import tilemap "utils"
 
 main :: proc() 
 {
-//load TileMap data example:
-    map_path := tiled.TILED_RESOURCES + "Overworld.tmx"
-    fmt.println(map_path)
-    tilemap := tiled.load_tilemap(map_path)
-    fmt.println(tilemap)
-//=========================
-
-
     track: mem.Tracking_Allocator
     mem.tracking_allocator_init(&track, context.allocator)
     context.allocator = mem.tracking_allocator(&track)
@@ -51,12 +43,15 @@ main :: proc()
     rl.SetWindowState(window_flags)
     rl.SetTargetFPS(144)
 
+    worldmap := tilemap.Load(tilemap.TILED_RESOURCES + "RiverWorld.tmx",2)
+
     for !rl.WindowShouldClose() 
     {
         rl.BeginDrawing()
             text := fmt.ctprint("Something")
             rl.DrawText(text, 20, 20, 10, rl.RAYWHITE)
             rl.ClearBackground(rl.RAYWHITE)
+            tilemap.Render(&worldmap)
             rl.DrawTexture(texture, 0, 0, rl.RAYWHITE)
             rl.DrawFPS(10, 10)
         rl.EndDrawing()
