@@ -7,20 +7,14 @@ import "core:math"
 import s "core:strings"
 
 import rl "vendor:raylib"
-import tiled "utils"
 import mem_tracking "mem_tracking"
 import animation "animation"
 import sprites "sprites"
+import tilemap "tilemap"
+import bunny "bunny"
 
 main :: proc() 
 {
-//load TileMap data example:
-    // map_path := tiled.TILED_RESOURCES + "Overworld.tmx"
-    // fmt.println(map_path)
-    // tilemap := tiled.load_tilemap(map_path)
-    // fmt.println(tilemap)
-//=========================
-
     track: mem.Tracking_Allocator
     mem.tracking_allocator_init(&track, context.allocator)
     context.allocator = mem.tracking_allocator(&track)
@@ -68,6 +62,8 @@ main :: proc()
     window_flags : rl.ConfigFlags : {.WINDOW_RESIZABLE}
     rl.SetWindowState(window_flags)
     rl.SetTargetFPS(144)
+    
+    worldmap := tilemap.Load(tilemap.TILED_RESOURCES + "RiverWorld.tmx",2)
 
     camera := rl.Camera2D{}
     camera.target = rl.Vector2{character.position.x, character.position.y}
@@ -121,7 +117,6 @@ main :: proc()
         
         character.position.x += input.x * character_speed * dt
         character.position.y += input.y * character_speed * dt
-        //Set the camera target to the character position using math lerp
 
         start_pos := [2]f32{camera.target.x, camera.target.y}
         end_pos := [2]f32{character.position.x,  character.position.y}
@@ -136,24 +131,9 @@ main :: proc()
         camera.offset = rl.Vector2{f32(width/2), f32(height/2)}
 
         rl.BeginDrawing()
-        pastel_green := rl.Color{152, 251, 152, 255}  // Pastel green
-            rl.ClearBackground(pastel_green)
+            rl.ClearBackground(rl.RAYWHITE)
             rl.BeginMode2D(camera)
-// Draw smaller rectangles with pastel colors
-// Define some pastel colors
-pastel_pink := rl.Color{255, 182, 193, 255}   // Pastel pink
-pastel_blue := rl.Color{173, 216, 230, 255}   // Pastel blue
-pastel_green_y := rl.Color{240, 180, 224, 255} // Pastel green
-pastel_yellow := rl.Color{255, 255, 224, 255} // Pastel yellow
-pastel_orange := rl.Color{255, 204, 153, 255} // Pastel orange
-
-// Draw rectangles
-rl.DrawRectangle(100, 100, 400, 300, pastel_pink)    // Pastel pink rectangle
-rl.DrawRectangle(500, 100, 400, 300, pastel_blue)   // Pastel blue rectangle
-rl.DrawRectangle(100, 410, 400, 300, pastel_green_y)  // Pastel green rectangle
-rl.DrawRectangle(500, 410, 400, 300, pastel_yellow) // Pastel yellow rectangle
-rl.DrawRectangle(250, 650, 200, 200, pastel_orange) // Pastel orange rectangle in the center
-
+                tilemap.Render(&worldmap)
                 animation.update(&character, dt)
                 animation.draw(character)
             rl.EndMode2D()
