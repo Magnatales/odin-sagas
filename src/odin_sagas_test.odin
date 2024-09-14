@@ -34,7 +34,7 @@ main :: proc()
     rl.SetWindowState(window_flags)
     rl.SetTargetFPS(144)
     
-    worldmap := tilemap.Load(tilemap.TILED_RESOURCES + "RiverWorld.tmx",2)
+    worldmap := tilemap.Load(tilemap.TILED_RESOURCES + "RiverWorld.tmx", 1)
 
     camera := rl.Camera2D{}
     camera.target = rl.Vector2{bunny_character.entity.position.x, bunny_character.entity.position.y}
