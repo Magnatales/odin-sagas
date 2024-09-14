@@ -1,0 +1,29 @@
+{
+    "Map/SizeTest": {
+        "height": 4300,
+        "width": 2
+    },
+    "activeFile": "",
+    "expandedProjectPaths": [
+    ],
+    "fileStates": {
+        "Overworld.tmx": {
+            "scale": 0.1235,
+            "selectedLayer": 0,
+            "viewCenter": {
+                "x": 392.7125506072875,
+                "y": 404.8582995951415
+            }
+        }
+    },
+    "map.lastUsedFormat": "tmx",
+    "map.renderOrder": null,
+    "map.tileHeight": 16,
+    "map.tileWidth": 16,
+    "map.width": 20,
+    "openFiles": [
+    ],
+    "project": "Odin-Sagas-Tiled.tiled-project",
+    "recentFiles": [
+    ]
+}
