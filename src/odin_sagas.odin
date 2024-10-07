@@ -7,6 +7,9 @@ import "core:mem"
 import s "core:strings"
 import tilemap "utils"
 
+import "input"
+
+
 main :: proc() 
 {
     track: mem.Tracking_Allocator
@@ -47,15 +50,26 @@ main :: proc()
 
     for !rl.WindowShouldClose() 
     {
+        //Gather WASD input:
+        moveInput:=input.GetPlayerInput()
+
         rl.BeginDrawing()
+            rl.ClearBackground(rl.RAYWHITE)
+
+            //DRAW MOVE INPUT to screen:
+            rl.DrawCircle(69, 220, 60, rl.GRAY)
+            moveVec := input.NormalizedMovementVector(&moveInput)
+            rl.DrawCircle(69+(i32)(moveVec.x*60), 220+(i32)(moveVec.y*60), 20,rl.RED)
+            //END DRAWING MOVE INPUT.
+
             text := fmt.ctprint("Something")
             rl.DrawText(text, 20, 20, 10, rl.RAYWHITE)
-            rl.ClearBackground(rl.RAYWHITE)
+           
             tilemap.Render(&worldmap)
             rl.DrawTexture(texture, 0, 0, rl.RAYWHITE)
             rl.DrawFPS(10, 10)
         rl.EndDrawing()
-
+        
         mem.free_all(context.temp_allocator)
     }
 }
