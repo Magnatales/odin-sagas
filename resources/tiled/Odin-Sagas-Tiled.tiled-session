@@ -3,10 +3,15 @@
         "height": 4300,
         "width": 2
     },
-    "activeFile": "",
+    "activeFile": "RiverWorld.tmx",
     "expandedProjectPaths": [
+        "."
     ],
     "fileStates": {
+        "Grass-Tiled.tsx": {
+            "scaleInDock": 1,
+            "scaleInEditor": 1
+        },
         "Overworld.tmx": {
             "scale": 0.1235,
             "selectedLayer": 0,
@@ -14,6 +19,17 @@
                 "x": 392.7125506072875,
                 "y": 404.8582995951415
             }
+        },
+        "RiverWorld.tmx": {
+            "scale": 1.5,
+            "selectedLayer": 2,
+            "viewCenter": {
+                "x": 199.33333333333331,
+                "y": 198.66666666666663
+            }
+        },
+        "Water.tsx": {
+            "scaleInDock": 5.5
         }
     },
     "map.lastUsedFormat": "tmx",
@@ -22,8 +38,14 @@
     "map.tileWidth": 16,
     "map.width": 20,
     "openFiles": [
+        "Grass-Tiled.tsx",
+        "Overworld.tmx",
+        "RiverWorld.tmx"
     ],
     "project": "Odin-Sagas-Tiled.tiled-project",
     "recentFiles": [
+        "Grass-Tiled.tsx",
+        "Overworld.tmx",
+        "RiverWorld.tmx"
     ]
 }

@@ -52,15 +52,12 @@ main :: proc()
     {
         //Gather WASD input:
         moveInput:=input.GetPlayerInput()
-
+        moveVector:=input.NormalizedMovementVector(&moveInput)
+        
         rl.BeginDrawing()
             rl.ClearBackground(rl.RAYWHITE)
 
-            //DRAW MOVE INPUT to screen:
-            rl.DrawCircle(69, 220, 60, rl.GRAY)
-            moveVec := input.NormalizedMovementVector(&moveInput)
-            rl.DrawCircle(69+(i32)(moveVec.x*60), 220+(i32)(moveVec.y*60), 20,rl.RED)
-            //END DRAWING MOVE INPUT.
+            DrawUserInput(&moveVector)
 
             text := fmt.ctprint("Something")
             rl.DrawText(text, 20, 20, 10, rl.RAYWHITE)
@@ -72,4 +69,11 @@ main :: proc()
         
         mem.free_all(context.temp_allocator)
     }
+}
+
+DrawUserInput::proc(moveVec:^rl.Vector2, bg:rl.Color = rl.GRAY, dot:rl.Color = rl.RED){
+    //DRAW MOVE INPUT to screen:
+    rl.DrawCircle(69, 220, 60, bg)
+    rl.DrawCircle(69+(i32)(moveVec.x*60), 220+(i32)(moveVec.y*60), 20,dot)
+    //END DRAWING MOVE INPUT.
 }
